@@ -30,10 +30,11 @@ def record(sid, data):
 def mix(sid, data):
     print('starting mixing mode!', data)
     rc = subprocess.call(["cp", "/home/pi/videopavio/videos/mix.mp4", "/home/pi/videopavio/videos/mix_temp.mp4"])
-    rc = subprocess.Popen(["ffmpeg", "-i", "/home/pi/videopavio/videos/mix_temp.mp4", "-i", "/home/pi/videopavio/videos/2025-10-09_191912.mp4", "-filter_complex", "[1:v]colorkey=0x3BBD1E:0.3:0.2[ckout];[0:v][ckout]overlay[out]", "-map", "[out]", "-c:v", "libx264", "-y", "/home/pi/videopavio/videos/mix_temp_2.mp4"])
+    rc = subprocess.Popen(["ffmpeg", "-i", "/home/pi/videopavio/videos/mix_temp.mp4", "-i", "/home/pi/videopavio/videos/LATEST_FILENAME_FOUND_IN_VIDEOS_FOLDER.mp4", "-filter_complex", "[1:v]colorkey=0x3BBD1E:0.3:0.2[ckout];[0:v][ckout]overlay[out]", "-map", "[out]", "-c:v", "libx264", "-y", "/home/pi/videopavio/videos/mix_temp_2.mp4"])
     rc = subprocess.call(["mv", "/home/pi/videopavio/videos/mix_temp_2.mp4", "/home/pi/videopavio/videos/mix.mp4"])
 
 if __name__ == '__main__':
     eventlet.wsgi.server(eventlet.listen(('', 5000)), app)
+
 
 
