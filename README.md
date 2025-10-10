@@ -75,7 +75,7 @@ Type=simple
 
 ExecStart=/usr/bin/python /home/pi/videopavio/recorder/recorder_socketio.py
 
-Restart=on-abort
+Restart=always
  
 [Install]
 
