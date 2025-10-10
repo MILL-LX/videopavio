@@ -29,7 +29,13 @@ def main():
                 sio.emit('record', 'record')
             elif (e == 'm'):
                 print('sending mixing message')
-                sio.emit('mix', 'mix')                
+                sio.emit('mix', 'mix')
+            elif (e == 'v'):
+                print('sending viewcam message')
+                sio.emit('start_viewcam', 'start_viewcam')
+            elif (e == 's'):
+                print('stopping viewcam message')
+                sio.emit('kill_viewcam', 'kill_viewcam')
 
 if __name__ == '__main__':
     main()
