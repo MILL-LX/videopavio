@@ -12,8 +12,9 @@ def connect():
 def record(data):
     print('message received with ', data)
     if (data == 'now'):
-        rc = subprocess.call("/home/pi/videopavio/recorder/grava_com_bash.sh")
-    sio.emit('recorder_response', {'response': 'we started the recording!'})
+        sio.emit('messaging', 'we will start the recording!')
+        rc = subprocess.call('/home/pi/videopavio/recorder/grava_com_bash.sh')
+        sio.emit('messaging', 'rsync is done!')
 
 @sio.event
 def disconnect():
