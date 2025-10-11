@@ -8,5 +8,5 @@ timeout=30000;
 
 echo $x;
 
-rpicam-vid --timeout=$timeout --width=1920 --height=1080 --nopreview --bitrate=15000k --framerate=24 --low-latency --codec=libav -o /home/pi/videopavio/videos/$x.mp4 && 
-rsync -e "ssh -i /home/pi/.ssh/id_ed25519" --recursive --update --verbose /home/pi/videopavio/videos/*4 pi@videopavio.local:videopavio/videos/
+rpicam-vid --timeout=$timeout --width=1920 --height=1200 --nopreview --bitrate=15000k --framerate=24 --low-latency --codec=libav -o /home/pi/videopavio/videos/$x.mp4 && 
+rsync -e "ssh -i /home/pi/.ssh/id_rsa" --recursive --update --verbose /home/pi/videopavio/videos/*4 pi@videopavio.local:videopavio/videos/
