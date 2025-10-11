@@ -34,14 +34,14 @@ def record(sid, data):
     print('entering recording mode!', data)
     sio.emit('record', 'now')
     # and we show the live camera stream on the server machine:
-    rc = subprocess.Popen(["rpicam-vid", "-t", "30000", "--width=1920", "--height=1080", "--fullscreen", "--roi", "0.20,0.20,0.55,0.55"])
+    rc = subprocess.Popen(["rpicam-vid", "-t", "30000", "--width=1920", "--height=1200", "--fullscreen", "--roi", "0.20,0.20,0.55,0.55"])
 
 @sio.event
 def start_viewcam(sid, data):
     print('entering viewing mode!', data)
     sio.emit('messaging', 'now viewing')
     # and we show the live camera stream on the server machine:
-    rc = subprocess.Popen(["rpicam-vid", "-t", "0", "--width=1920", "--height=1080", "--fullscreen", "--roi", "0.20,0.20,0.55,0.55"])
+    rc = subprocess.Popen(["rpicam-vid", "-t", "0", "--width=1920", "--height=1200", "--fullscreen", "--roi", "0.20,0.20,0.55,0.55"])
 
 @sio.event
 def kill_viewcam(sid, data):
@@ -62,11 +62,14 @@ def mix(sid, data):
     print('latest_file: ')
     print(sorted_files[-1])
 
-    rc_mix = subprocess.Popen(["ffmpeg", "-i", "/home/pi/videopavio/videos/mix_temp.mp4", "-i", latest_file, "-filter_complex", "[1:v]colorkey=0x3BBD1E:0.3:0.2[ckout];[0:v][ckout]overlay[out]", "-map", "[out]", "-c:v", "libx264", "-y", "/home/pi/videopavio/videos/mix_temp_2.mp4"])
-    rc_mix.wait()
-    rc_kill = subprocess.call(["killall", "ffplay"])
-    rc_mv = subprocess.call(["mv", "-f", "/home/pi/videopavio/videos/mix_temp_2.mp4", "/home/pi/videopavio/videos/mix.mp4"])
-    rc_play = subprocess.Popen(["ffplay", "-fs", "-loop", "-1", "/home/pi/videopavio/videos/mix.mp4"])
+    # rc_mix = subprocess.Popen(["ffmpeg", "-i", "/home/pi/videopavio/videos/mix_temp.mp4", "-i", latest_file, "-filter_complex", "[1:v]colorkey=0x3BBD1E:0.3:0.2[ckout];[0:v][ckout]overlay[out]", "-map", "[out]", "-c:v", "libx264", "-y", "/home/pi/videopavio/videos/mix_temp_2.mp4"])
+    # rc_mix.wait()
+    # rc_kill = subprocess.call(["killall", "ffplay"])
+    # rc_mv = subprocess.call(["mv", "-f", "/home/pi/videopavio/videos/mix_temp_2.mp4", "/home/pi/videopavio/videos/mix.mp4"])
+    # rc_play = subprocess.Popen(["ffplay", "-fs", "-loop", "-1", "/home/pi/videopavio/videos/mix.mp4"])
+
+    rc_tutti = subprocess.Popen(["ffmpeg -i /home/pi/videopavio/videos/mix_temp.mp4 -i " + latest_file + " -filter_complex '[1:v]colorkey=0x3BBD1E:0.3:0.2[ckout];[0:v][ckout]overlay[out]' -map '[out]' -c:v libx264 -y /home/pi/videopavio/videos/mix_temp_2.mp4 && killall ffplay && mv -f /home/pi/videopavio/videos/mix_temp_2.mp4 /home/pi/videopavio/videos/mix.mp4 && ffplay -fs -loop -1 /home/pi/videopavio/videos/mix.mp4"], stdout=subprocess.PIPE, shell=True)
+
 
 if __name__ == '__main__':
     eventlet.wsgi.server(eventlet.listen(('', 5000)), app)
