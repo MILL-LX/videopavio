@@ -24,10 +24,13 @@ After=multi-user.target
 
 Type=simple
 
+User=pi
+
+Environment=Display=:0.0
+
 ExecStart=/usr/bin/python /home/pi/videopavio/server/server.py
 
 Restart=on-abort
- 
 
 [Install]
 
