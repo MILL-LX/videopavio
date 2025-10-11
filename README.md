@@ -116,4 +116,9 @@ echo $x;
 rpicam-vid --timeout=10000 --width=1920 --height=1080 --nopreview --bitrate=15000k --framerate=24 --low-latency --codec=libav -o /home/pi/videopavio/videos/$x.mp4
 
 to rsync every mp4 and h264 in the videos folder:
-rsync --recursive --update --verbose /home/pi/videopavio/videos/*4 opencv.local:videopavio/videos/
+rsync --recursive --update --verbose /home/pi/videopavio/videos/*4 videopavio.local:videopavio/videos/
+
+to generate a black film:
+
+ffmpeg -f lavfi -i color=size=1920x1200:rate=30:color=black -f mp4 -an -t 30 mix.mp4
+
