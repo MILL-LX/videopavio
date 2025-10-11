@@ -15,10 +15,13 @@ def record(data):
         sio.emit('messaging', 'we will start the recording!')
         rc = subprocess.call('/home/pi/videopavio/recorder/grava_com_bash.sh')
         sio.emit('messaging', 'rsync is done!')
+        sio.emit('messaging', 'sending mix message!')
+        sio.emit('mix', 'mix')
+
 
 @sio.event
 def disconnect():
     print('disconnected from server')
 
-sio.connect('http://opencv.local:5000')
+sio.connect('http://videopavio.local:5000')
 sio.wait()
