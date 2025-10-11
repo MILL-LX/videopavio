@@ -20,7 +20,7 @@ def disconnect():
 
 
 def main():
-    sio.connect('http://opencv.local:5000')
+    sio.connect('http://videopavio.local:5000')
     with Input(keynames='curses') as input_generator:
         for e in input_generator:
             print(repr(e))
