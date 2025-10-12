@@ -1,0 +1,13 @@
+[Unit]
+Description=Videopavio Server
+After=multi-user.target
+
+[Service]
+Type=simple
+User=pi
+Environment=Display=:0.0
+ExecStart=/usr/bin/python /home/pi/videopavio/server/server.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
