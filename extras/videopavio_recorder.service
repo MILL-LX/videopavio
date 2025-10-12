@@ -1,0 +1,11 @@
+[Unit]
+Description=Videopavio Recorder
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/pi/videopavio/recorder/recorder_socketio.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
