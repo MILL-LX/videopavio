@@ -10,80 +10,12 @@ The idea is to have a server connected to a screen, showing videoloops and/or it
 The recorder(s) wait for socket.io messages and when prompted record and send the files back to the server.
 
 # server role:
-cd /lib/systemd/system/
+sudo cp extras/videopavio_server.service /lib/systemd/system/
 
-sudo nano videopavio_server.service
-
-[Unit]
-
-Description=Videopavio Server
-
-After=multi-user.target
- 
-[Service]
-
-Type=simple
-
-User=pi
-
-Environment=Display=:0.0
-
-ExecStart=/usr/bin/python /home/pi/videopavio/server/server.py
-
-Restart=on-abort
-
-[Install]
-
-WantedBy=multi-user.target
-
-
-cd /lib/systemd/system/
-
-sudo nano videopavio_sensors.service
-
-[Unit]
-
-Description=Videopavio Server Sensors and buttons
-
-After=multi-user.target
- 
-[Service]
-
-Type=simple
-
-ExecStart=/usr/bin/python /home/pi/videopavio/server/sensors.py
-
-Restart=on-abort
- 
-[Install]
-
-WantedBy=multi-user.target
-
+sudo cp extras/videopavio_sensors.service /lib/systemd/system/
 
 # recorder role
-
-cd /lib/systemd/system/
-
-sudo nano videopavio_recorder.service
-
-[Unit]
-
-Description=Videopavio Recorder
-
-After=multi-user.target
- 
-[Service]
-
-Type=simple
-
-ExecStart=/usr/bin/python /home/pi/videopavio/recorder/recorder_socketio.py
-
-Restart=always
- 
-[Install]
-
-WantedBy=multi-user.target
-
+sudo cp extras/videopavio_recorder.service /lib/systemd/system/
 
 # both roles - activate the needed services
 sudo chmod 644 /lib/systemd/system/videopavio*
@@ -103,22 +35,3 @@ sudo systemctl enable videopavio_recorder.service
 sudo systemctl start videopavio_recorder.service
 
 sudo systemctl status videopavio_recorder.service
-
-# notes and tricks
-
-to show the camera's stream, directly:
-rpicam-vid -t 0 --fullscreen --width=1920 --heigh=1080
-
-to record a file with date as filename:
-echo "recording file: ";
-x=`date +%F_%H%M%S`;
-echo $x;
-rpicam-vid --timeout=10000 --width=1920 --height=1080 --nopreview --bitrate=15000k --framerate=24 --low-latency --codec=libav -o /home/pi/videopavio/videos/$x.mp4
-
-to rsync every mp4 and h264 in the videos folder:
-rsync --recursive --update --verbose /home/pi/videopavio/videos/*4 videopavio.local:videopavio/videos/
-
-to generate a black film:
-
-ffmpeg -f lavfi -i color=size=1920x1200:rate=30:color=black -f mp4 -an -t 30 mix.mp4
-
