@@ -1,0 +1,11 @@
+[Unit]
+Description=Videopavio Server Sensors and buttons
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/pi/videopavio/server/sensors.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
