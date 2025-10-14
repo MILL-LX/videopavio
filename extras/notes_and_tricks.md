@@ -32,7 +32,19 @@ rpicam-vid --timeout=10000 --width=1920 --height=1080 --nopreview --bitrate=1500
 ### to view the rpi camera directly as a stream using cvlc:
 `rpicam-vid -t 0 --inline -o - | cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:8090}' :demux=h264`
 
-
 ## rsync
 ### to rsync every mp4 and h264 in the videos folder:
 `rsync --recursive --update --verbose /home/pi/videopavio/videos/*4 videopavio.local:videopavio/videos/`
+
+
+## gpio, python, systemd:
+### to access the GPIO we have to change our .service files:
+adding inside the [Unit] block:  
+`DefaultDependencies=false`  
+and/or  
+`WorkingDirectory=/home/pi/videopavio/`  
+inside the [Service] block...
+
+
+
+
