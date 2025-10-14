@@ -4,6 +4,7 @@ After=multi-user.target
 
 [Service]
 Type=simple
+User=pi
 ExecStart=/usr/bin/python /home/pi/videopavio/recorder/recorder_socketio.py
 Restart=always
 
