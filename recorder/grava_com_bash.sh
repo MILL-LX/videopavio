@@ -3,8 +3,9 @@
 echo "recording file: ";
 
 x=`date +%F_%H%M%S`;
+timeout=500000;
 # timeout=1800000;
-timeout=30000;
+# timeout=30000;
 
 echo $x;
 
