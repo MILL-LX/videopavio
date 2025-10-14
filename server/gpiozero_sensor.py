@@ -15,7 +15,7 @@ def on_button_pressed():
     if (button.is_pressed):
         print("sensor detected!")
         sio.emit('record', 'now')
-        sleep(35) # wait a little more than the video timeout!
+        sleep(600) # wait a little more than the video timeout! (500 seconds video, 600 timeout)
 
 @sio.event
 def disconnect():
