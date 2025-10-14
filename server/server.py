@@ -37,7 +37,7 @@ def record(sid, data):
     print('entering recording mode!', data)
     sio.emit('record', 'now')
     # and we show the live camera stream on the server machine:
-    rc = subprocess.Popen(["rpicam-vid", "-t", "30000", "--width=1920", "--height=1080", "--fullscreen", "--roi", "0.125,0.125,0.75,0.75"])
+    rc = subprocess.Popen(["rpicam-vid", "-t", "500000", "--width=1920", "--height=1080", "--fullscreen", "--roi", "0.125,0.125,0.75,0.75"])
     # rc = subprocess.Popen(["rpicam-vid", "-t", "1800000", "--width=1920", "--height=1080", "--fullscreen", "--roi", "0.125,0.125,0.75,0.75"])
 
 @sio.event
@@ -68,5 +68,6 @@ def mix(sid, data):
 
 if __name__ == '__main__':
     eventlet.wsgi.server(eventlet.listen(('', 5000)), app)
+
 
 
