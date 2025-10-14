@@ -5,8 +5,10 @@ After=multi-user.target
 [Service]
 Type=simple
 User=pi
-Environment=Display=:0.0
-ExecStart=/usr/bin/python /home/pi/videopavio/server/server.py
+WorkingDirectory=/home/pi/videopavio/
+#Environment=XAUTHORITY=/home/pi/.Xauthority
+Environment="DISPLAY=:0.0"
+ExecStart=/usr/bin/python /home/pi/videopavio/server/server.py > /home/pi/videopavio/videopavio_server.log
 Restart=always
 
 [Install]
