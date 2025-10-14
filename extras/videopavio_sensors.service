@@ -1,10 +1,14 @@
 [Unit]
-Description=Videopavio Server Sensors and buttons
+Description=Videopavio GPIO Sensor Service
+DefaultDependencies=false
 After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python /home/pi/videopavio/server/sensors.py
+User=pi
+Environment=Display=:0.0
+WorkingDirectory=/home/pi/videopavio/
+ExecStart=/usr/bin/python /home/pi/videopavio/server/gpiozero_sensor.py
 Restart=always
 
 [Install]
