@@ -1,6 +1,4 @@
-
 from curtsies import Input
-
 import socketio
 
 sio = socketio.Client()
@@ -9,18 +7,17 @@ sio = socketio.Client()
 def connect():
     print('connection established')
 
-# @sio.event
-# def my_message(data):
-#     print('message received with ', data)
-#     sio.emit('my response', {'response': 'my response'})
-
 @sio.event
 def disconnect():
     print('disconnected from server')
 
-
 def main():
     sio.connect('http://videopavio.local:5000')
+
+    @sio.on('internal_messaging')
+    def on_messaging(sid, data):
+        print('internal message: ', sid, data)
+
     with Input(keynames='curses') as input_generator:
         for e in input_generator:
             print(repr(e))
