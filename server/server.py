@@ -166,7 +166,7 @@ def mix_one(path):
     log.info('mixing %s', path)
     try:
         result = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE,
-                                timeout=config.MIX_TIMEOUT_S)
+                                timeout=config.MIX_TIMEOUT_S or None)
     except subprocess.TimeoutExpired:
         log.error('ffmpeg timed out after %ds', config.MIX_TIMEOUT_S)
         return False

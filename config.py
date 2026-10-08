@@ -31,8 +31,8 @@ RECORD_TIMEOUT_S = int(_env('RECORD_TIMEOUT_S', str(RECORD_MS // 1000 + 300)))
 UPLOAD_ATTEMPTS = int(_env('UPLOAD_ATTEMPTS', '5'))
 UPLOAD_RETRY_S = int(_env('UPLOAD_RETRY_S', '30'))
 
-# Mix: tempo máximo do ffmpeg e nº de falhas antes de rejeitar um clip
-MIX_TIMEOUT_S = int(_env('MIX_TIMEOUT_S', '1800'))
+# Mix: tempo máximo do ffmpeg (0 desativa) e nº de falhas antes de rejeitar um clip
+MIX_TIMEOUT_S = int(_env('MIX_TIMEOUT_S', '0'))   # 0 = sem limite (o mix cresce a cada camada)
 MIX_MAX_ATTEMPTS = int(_env('MIX_MAX_ATTEMPTS', '3'))
 # O mix corre em segundo plano com pouca prioridade, para não prejudicar a reprodução/gravação
 MIX_NICE = int(_env('MIX_NICE', '19'))
