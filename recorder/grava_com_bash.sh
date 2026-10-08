@@ -9,7 +9,7 @@ mode="$1"
 final="$2"
 [ -n "$mode" ] && [ -n "$final" ] || { echo "uso: $0 record|upload ficheiro.mp4" >&2; exit 2; }
 
-RECORD_MS="${RECORD_MS:-540000}"
+RECORD_MS="${RECORD_MS:-60000}"
 RECORD_WIDTH="${RECORD_WIDTH:-1920}"
 RECORD_HEIGHT="${RECORD_HEIGHT:-1080}"
 REMOTE="${REMOTE:-pi@videopavio.local:/media/pi/4BCF-8A8C/videopavio/videos/}"
