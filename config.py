@@ -23,8 +23,8 @@ SSH_USER = _env('SSH_USER', 'pi')
 # TESTE PROVISÓRIO: 60 s. Valor de produção: 1200000 (20 min)
 RECORD_MS = int(_env('RECORD_MS', '60000'))
 # Resolução da gravação (recorder) e da pré-visualização (servidor). Para aliviar os Pis: 1280x720
-RECORD_WIDTH = int(_env('RECORD_WIDTH', '1920'))
-RECORD_HEIGHT = int(_env('RECORD_HEIGHT', '1080'))
+RECORD_WIDTH = int(_env('RECORD_WIDTH', '1280'))
+RECORD_HEIGHT = int(_env('RECORD_HEIGHT', '720'))
 # Se o servidor ficar em "recording" mais do que isto sem receber 'recorded', volta a "idle"
 RECORD_TIMEOUT_S = int(_env('RECORD_TIMEOUT_S', str(RECORD_MS // 1000 + 300)))
 # Recorder: tentativas e pausa (s) no envio por rsync
