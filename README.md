@@ -10,7 +10,7 @@ The latest file will then get mixed with the latest mix, creating a composition,
 ## @ VIDEOPAVIO (trixie - full desktop version):
 	1 - sudo apt-get update && sudo apt-get dist-upgrade -y && sudo reboot
 	2 - sudo apt-get install python3-socketio python3-eventlet
-	3 - ???
+	3 - sudo apt-get install python3-gpiozero python3-curtsies unclutter ffmpeg  (sensor, keyboard, playback)
 	4 - git clone https://github.com/MILL-LX/videopavio/
 
 ### server role:

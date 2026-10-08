@@ -8,7 +8,9 @@ User=pi
 WorkingDirectory=/home/pi/videopavio/
 #Environment=XAUTHORITY=/home/pi/.Xauthority
 Environment="DISPLAY=:0.0"
-ExecStart=/usr/bin/python /home/pi/videopavio/server/server.py > /home/pi/videopavio/videopavio_server.log
+ExecStart=/usr/bin/python /home/pi/videopavio/server/server.py
+StandardOutput=append:/home/pi/videopavio/videopavio_server.log
+StandardError=inherit
 Restart=always
 
 [Install]
