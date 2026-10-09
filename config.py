@@ -48,7 +48,7 @@ KEY_COLOR = _env('KEY_COLOR', '0x3BBD1E')
 KEY_PARAMS = _env('KEY_PARAMS', '0.3:0.2')
 
 # Zooom / ROI
-ROI_VALUES = _env('ROI_VALUES', '0,0,1,1')
+ROI_VALUES = _env('ROI_VALUES', '0.125,0.125,0.75,0.75')
 
 # GPIO (sensor)
 BUTTON_PIN = int(_env('BUTTON_PIN', '4'))
