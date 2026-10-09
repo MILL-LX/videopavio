@@ -25,7 +25,7 @@ MIXED_LOG = os.path.join(VIDEOS, 'mixed.txt')
 REJECTED = os.path.join(VIDEOS, 'rejected')
 SEED = os.path.join(VIDEOS, config.SEED_VIDEO)
 
-CAM_ARGS = ["--hflip=1", "--width=%d" % config.RECORD_WIDTH, "--height=%d" % config.RECORD_HEIGHT,
+CAM_ARGS = ["--mode=1080:1920:24:P", "--hflip=1", "--width=%d" % config.RECORD_WIDTH, "--height=%d" % config.RECORD_HEIGHT,
             "--fullscreen",
             "--roi", config.ROI_VALUES]
 
