@@ -27,7 +27,7 @@ SEED = os.path.join(VIDEOS, config.SEED_VIDEO)
 
 CAM_ARGS = ["--hflip=1", "--width=%d" % config.RECORD_WIDTH, "--height=%d" % config.RECORD_HEIGHT,
             "--fullscreen",
-            "--roi", "0.125,0.125,0.75,0.75"]
+            "--roi", config.ROI_VALUES]
 
 sio = socketio.Server()
 app = socketio.WSGIApp(sio)
