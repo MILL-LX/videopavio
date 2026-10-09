@@ -21,7 +21,8 @@ SSH_USER = _env('SSH_USER', 'pi')
 
 # Duração da gravação (ms) - usada pelo recorder e pela pré-visualização no servidor
 # TESTE PROVISÓRIO: 60 s. Valor de produção: 1200000 (20 min)
-RECORD_MS = int(_env('RECORD_MS', '60000'))
+RECORD_MS = int(_env('RECORD_MS', '60000')) # 60 segundos
+# RECORD_MS = int(_env('RECORD_MS', '1200000')) # 20 minutos
 # Resolução da gravação (recorder) e da pré-visualização (servidor). Para aliviar os Pis: 1280x720
 RECORD_WIDTH = int(_env('RECORD_WIDTH', '1280'))
 RECORD_HEIGHT = int(_env('RECORD_HEIGHT', '720'))
@@ -40,7 +41,7 @@ MIX_THREADS = int(_env('MIX_THREADS', '2'))
 # Altura (px) do vídeo misturado; 0 mantém a resolução original. 720 é bem mais leve que 1080
 MIX_HEIGHT = int(_env('MIX_HEIGHT', '0'))
 # Vídeo usado para criar mix.mp4 quando este não existe
-SEED_VIDEO = _env('SEED_VIDEO', 'white_videos/white_5_minutes.mp4')
+SEED_VIDEO = _env('SEED_VIDEO', 'white_videos/white_60s_1280x720.mp4')
 
 # Chroma key
 KEY_COLOR = _env('KEY_COLOR', '0x3BBD1E')
